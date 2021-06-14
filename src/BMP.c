@@ -87,5 +87,7 @@ void writeBMP(char *file, BITMAPFILEHEADER *bf, BITMAPINFOHEADER *bi, RGBTRIPLE*
 		};
 	};
 
+	fclose(filePTR);
+	
 	return;
 };

@@ -80,6 +80,10 @@ int main(int argc, char **argv)
 	
 	// closing the BMP file
 	closeBMP(image, bi.biHeight);
+	
+	// closing the file
+	fclose(inputptr);
+	fclose(outputptr);
 
 	return 0;
 };

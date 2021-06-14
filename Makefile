@@ -5,7 +5,7 @@ INC = -I include/
 SRC = $(wildcard src/*.c)
 
 all:
-	$(CXX) $(CXXFLAGS) $(INC) $(SRC) example/cli.c -o bin/cli.exe
+	$(CXX) $(CXXFLAGS) $(INC) $(SRC) example/cli.c -o bin/cli.exe -lm
 
 run:
 	bin/cli.exe
