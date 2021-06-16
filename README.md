@@ -2,32 +2,26 @@
 
 FFjpeg is a command line toolbox to manipulate, convert and much more to images.
 
-## Run Locally
+# Run Locally
 
-Clone the project
+- Compile
 
-```bash
-  git clone https://github.com/IshantSRam/FFJPEG
 ```
-
-Go to the project directory
-
-```bash
-  cd FFJPEG
-```
-
-Compile
-
-```bash
   make
 ```
 
-Run
+- Run
 
-```bash
+```
   make run
 ```
 
-## License
+- To delete compiled binary
+
+```
+  make clean
+```
+
+# License
 
 MIT
