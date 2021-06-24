@@ -11,5 +11,5 @@ void sepia(int height, int width, RGBTRIPLE** image);
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE** image);
 
-// Blur image
+// Box Blur the image
 void blur(int height, int width, RGBTRIPLE** image);

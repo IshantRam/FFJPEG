@@ -6,7 +6,7 @@
 int main(int argc, char **argv)
 {
 	// allowable filters
-	char *filters = "grs";
+	char *filters = "grsb";
 
 	// Get filter flag and check validity
 	char filter = getopt(argc, argv, filters);
@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Invalid filter.\n");
 		return 1;
 	};
-	
+
 	// Ensure only one filter
 	if (getopt(argc, argv, filters) != -1)
 	{
@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 	// Ensure proper usage
 	if (argc != optind + 2)
 	{
-		fprintf(stderr, "Usage: filter [flag] infile outfile\n");
+		fprintf(stderr, "Usage: cli.exe [flag] infile outfile\n");
 		return 1;
 	};
 
@@ -50,37 +50,42 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Could not create %s.\n", outfile);
 		return 1;
 	};
-	
+
 	// Opening the BMP file and reading the file
 	BITMAPFILEHEADER bf;
 	BITMAPINFOHEADER bi;
-	RGBTRIPLE** image = openBMP(infile, &bf, &bi);
-	
+	RGBTRIPLE **image = openBMP(infile, &bf, &bi);
+
 	// Filter image
 	switch (filter)
 	{
-		// Grayscale
-		case 'g':
-			grayscale(bi.biHeight, bi.biWidth, image);
-			break;
+	// Grayscale
+	case 'g':
+		grayscale(bi.biHeight, bi.biWidth, image);
+		break;
 
-		// Reflection
-		case 'r':
-			reflect(bi.biHeight, bi.biWidth, image);
-			break;
+	// Reflection
+	case 'r':
+		reflect(bi.biHeight, bi.biWidth, image);
+		break;
 
-		// Sepia
-		case 's':
-			sepia(bi.biHeight, bi.biWidth, image);
-			break;
+	// Sepia
+	case 's':
+		sepia(bi.biHeight, bi.biWidth, image);
+		break;
+
+	// Blur
+	case 'b':
+		blur(bi.biHeight, bi.biWidth, image);
+		break;
 	};
-	
+
 	// Writing the BMP file
 	writeBMP(outfile, &bf, &bi, image);
-	
+
 	// closing the BMP file
 	closeBMP(image, bi.biHeight);
-	
+
 	// closing the file
 	fclose(inputptr);
 	fclose(outputptr);
