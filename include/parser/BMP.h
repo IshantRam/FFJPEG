@@ -1,4 +1,4 @@
-// BMP-related data types based on Microsoft's own
+// BMP related data types
 #pragma once
 #ifndef BMP_H
 #define BMP_H
@@ -63,33 +63,43 @@ typedef struct RGBTRIPLE
 } __attribute__((__packed__))
 RGBTRIPLE;
 
+/**
+ * BMP
+ * 
+ * This structure contains information about the image
+ * BITMAPFILEHEADER, BITMAPINFOHEADER, RGBTRIPLE pixlemap
+ */
+typedef struct BMP
+{
+	BITMAPFILEHEADER bf;
+	BITMAPINFOHEADER bi;
+	RGBTRIPLE** PixleMap;
+} __attribute__((__packed__))
+BMP;
+
 /*
  * open BMP
  * 
- * The openBMP Function output the each RGB pixel value of the given BMP file with 
- * BITMAPFILEHEADER and BITMAPINFOHEADER header
- * 
- * Adapted from https://www.vbforums.com/showthread.php?261522-C-C-Loading-Bitmap-Files-%28Manually%29
+ * The openBMP Function returns the BMP file data loaded in the BMP structure
+ * which contains BITMAPFILEHEADER BITMAPINFOHEADER and RGBTRIPLE pixlemap
  * 
  */
-RGBTRIPLE **openBMP(char *file, BITMAPFILEHEADER *bf, BITMAPINFOHEADER *bi);
+BMP *openBMP(char *file);
 
 /*
  * close BMP
  * 
- * The closeBMP Function frees the allocated memory for image
- * 
- * Adapted from https://www.vbforums.com/showthread.php?261522-C-C-Loading-Bitmap-Files-%28Manually%29
+ * The closeBMP Function frees the allocated memory for image loaded in the BMP structure
  * 
  */
-void closeBMP(RGBTRIPLE **image, int height);
+void closeBMP(BMP* image);
 
 /*
  * write BMP
  *
  * The writeBMP Function creates a new BMP image file with the arguments
- * BITMAPFILEHEADER, BITMAPINFOHEADER and RGB image array
+ * a BMP structure which contains the information about the image (BITMAPFILEHEADER BITMAPINFOHEADER and RGBTRIPLE pixlemap)
  */
-void writeBMP(char *file, BITMAPFILEHEADER *bf, BITMAPINFOHEADER *bi, RGBTRIPLE **image);
+void writeBMP(char *file, BMP* image);
 
 #endif

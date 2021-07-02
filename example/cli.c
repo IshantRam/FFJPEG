@@ -5,7 +5,7 @@
 
 int main(int argc, char **argv)
 {
-	// allowable filters
+	// allowable filters { g -> Grayscal, r -> Reflect, s -> Sepia, b -> Blur }
 	char *filters = "grsb";
 
 	// Get filter flag and check validity
@@ -52,41 +52,39 @@ int main(int argc, char **argv)
 	};
 
 	// Opening the BMP file and reading the file
-	BITMAPFILEHEADER bf;
-	BITMAPINFOHEADER bi;
-	RGBTRIPLE **image = openBMP(infile, &bf, &bi);
+	BMP* image = openBMP(infile);
 
 	// Filter image
 	switch (filter)
 	{
 	// Grayscale
 	case 'g':
-		grayscale(bi.biHeight, bi.biWidth, image);
+		grayscale(image);
 		break;
 
 	// Reflection
 	case 'r':
-		reflect(bi.biHeight, bi.biWidth, image);
+		reflect(image);
 		break;
 
 	// Sepia
 	case 's':
-		sepia(bi.biHeight, bi.biWidth, image);
+		sepia(image);
 		break;
 
 	// Blur
 	case 'b':
-		blur(bi.biHeight, bi.biWidth, image);
+		blur(image);
 		break;
 	};
 
 	// Writing the BMP file
-	writeBMP(outfile, &bf, &bi, image);
+	writeBMP(outfile, image);
 
 	// closing the BMP file
-	closeBMP(image, bi.biHeight);
+	closeBMP(image);
 
-	// closing the file
+	// closing the file pointers
 	fclose(inputptr);
 	fclose(outputptr);
 

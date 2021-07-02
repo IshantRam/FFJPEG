@@ -3,13 +3,13 @@
 #include "util.h"
 
 // Convert image to grayscale
-void grayscale(int height, int width, RGBTRIPLE** image);
+void grayscale(BMP *image);
 
 // Convert image to sepia
-void sepia(int height, int width, RGBTRIPLE** image);
+void sepia(BMP *image);
 
 // Reflect image horizontally
-void reflect(int height, int width, RGBTRIPLE** image);
+void reflect(BMP *image);
 
 // Box Blur the image
-void blur(int height, int width, RGBTRIPLE** image);
+void blur(BMP *image);
