@@ -5,10 +5,15 @@ INC = -I include/
 SRC = $(wildcard src/*/*.c)
 
 all:
-	$(CXX) $(CXXFLAGS) $(INC) $(SRC) example/cli.c -o bin/cli.exe -lm
+	$(CXX) $(CXXFLAGS) $(INC) $(SRC) example/FFJPEG.c -o bin/FFJPEG.exe -lm
 
 run:
-	bin/cli.exe
+	@cmd /k "cd bin & FFJPEG.exe -b images/David.bmp Blur.bmp & exit"
+	@cmd /k "cd bin & FFJPEG.exe -c images/David.bmp Contrast.bmp & exit"
+	@cmd /k "cd bin & FFJPEG.exe -g images/David.bmp Grayscale.bmp & exit"
+	@cmd /k "cd bin & FFJPEG.exe -i images/David.bmp Bright.bmp & exit"
+	@cmd /k "cd bin & FFJPEG.exe -r images/David.bmp Reflect.bmp & exit"
+	@cmd /k "cd bin & FFJPEG.exe -s images/David.bmp Sepia.bmp & exit"
 
 clean:
-	rm bin/*
+	@cmd /k "cd bin & del * & exit"

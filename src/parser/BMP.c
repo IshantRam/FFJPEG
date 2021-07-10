@@ -1,5 +1,5 @@
 #include "parser/BMP.h"
-#include "util.h"
+#include "util/util.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -35,16 +35,16 @@ BMP *openBMP(char *file)
 
 	// Allocate memory for image->PixleMap
 	image->PixleMap = (RGBTRIPLE **)calloc(image->bi.biHeight, sizeof(RGBTRIPLE *));
-	for (int i = 0; i < image->bi.biHeight; i++)
+	for (s64 i = 0; i < image->bi.biHeight; i++)
 	{
 		image->PixleMap[i] = (RGBTRIPLE *)calloc(image->bi.biWidth, sizeof(RGBTRIPLE));
 	}
 
 	// Determine padding for scanlines
-	int padding = (4 - (image->bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+	u32 padding = (4 - (image->bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
 	// Iterate over infile's scanlines
-	for (int counter = 0; counter < image->bi.biHeight; counter++)
+	for (s64 counter = 0; counter < image->bi.biHeight; counter++)
 	{
 		// Read row into pixel array
 		fread(image->PixleMap[counter], sizeof(RGBTRIPLE), image->bi.biWidth, filePTR);
@@ -65,10 +65,12 @@ void closeBMP(BMP *image)
 {
 	// if image is NULL
 	if (image == NULL)
+	{
 		return;
+	};
 
 	// looping over the pixle map and freeing memory of each array block
-	for (int i = 0; i < image->bi.biHeight; i++)
+	for (s64 i = 0; i < image->bi.biHeight; i++)
 	{
 		free(image->PixleMap[i]);
 	};
@@ -96,14 +98,14 @@ void writeBMP(char *file, BMP *image)
 	// Write outfile's BITMAPINFOHEADER
 	fwrite(&image->bi, sizeof(BITMAPINFOHEADER), 1, filePTR);
 
-	int padding = (4 - (image->bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
-	for (int i = 0; i < image->bi.biHeight; i++)
+	u32 padding = (4 - (image->bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+	for (s64 i = 0; i < image->bi.biHeight; i++)
 	{
 		// Write row to outfile
 		fwrite(image->PixleMap[i], sizeof(RGBTRIPLE), image->bi.biWidth, filePTR);
 
 		// Write padding at end of row
-		for (int k = 0; k < padding; k++)
+		for (u32 k = 0; k < padding; k++)
 		{
 			fputc(0x00, filePTR);
 		};

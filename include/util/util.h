@@ -21,4 +21,9 @@ typedef signed short s16;
 typedef signed int s32;
 typedef signed long long s64;
 
+/* Helper Function */
+
+// wrap - if the give value is greather than 255 it wrpas it up to 255, if less than 0 wraps it up to 0
+u8 wrap(s64 value);
+
 #endif

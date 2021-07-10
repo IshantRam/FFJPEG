@@ -3,7 +3,7 @@
 #ifndef BMP_H
 #define BMP_H
 
-#include "util.h"
+#include "util/util.h"
 
 /**
  * BITMAPFILEHEADER

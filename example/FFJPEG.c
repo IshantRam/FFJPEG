@@ -1,15 +1,17 @@
 #include <stdio.h>
 #include <getopt.h>
+#include "util/util.h"
 #include "parser/BMP.h"
 #include "effects/BMPeffects.h"
 
 int main(int argc, char **argv)
 {
-	// allowable filters { g -> Grayscal, r -> Reflect, s -> Sepia, b -> Blur }
-	char *filters = "grsb";
+	// allowable filters { b -> Blur, c -> Contrast, g -> Grayscal, i -> Brightness, r -> Reflect, s -> Sepia }
+	char *filters = "bcgirs";
 
 	// Get filter flag and check validity
 	char filter = getopt(argc, argv, filters);
+	
 	if (filter == '?')
 	{
 		fprintf(stderr, "Invalid filter.\n");
@@ -52,30 +54,40 @@ int main(int argc, char **argv)
 	};
 
 	// Opening the BMP file and reading the file
-	BMP* image = openBMP(infile);
+	BMP *image = openBMP(infile);
 
 	// Filter image
 	switch (filter)
 	{
-	// Grayscale
-	case 'g':
-		grayscale(image);
-		break;
+		// Blur
+		case 'b':
+			blur(image);
+			break;
 
-	// Reflection
-	case 'r':
-		reflect(image);
-		break;
+		// Contrast
+		case 'c':
+			contrast(image, 128);
+			break;
 
-	// Sepia
-	case 's':
-		sepia(image);
-		break;
+		// Grayscale
+		case 'g':
+			grayscale(image);
+			break;
 
-	// Blur
-	case 'b':
-		blur(image);
-		break;
+		// Reflection
+		case 'r':
+			reflect(image);
+			break;
+
+		// Sepia
+		case 's':
+			sepia(image);
+			break;
+
+		// Brightness
+		case 'i':
+			brightnes(image, 128);
+			break;
 	};
 
 	// Writing the BMP file
