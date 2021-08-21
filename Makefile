@@ -9,9 +9,9 @@ all:
 
 run:
 	@cmd /k "cd bin & FFJPEG.exe -b images/David.bmp Blur.bmp & exit"
-	@cmd /k "cd bin & FFJPEG.exe -c images/David.bmp Contrast.bmp & exit"
+	@cmd /k "cd bin & FFJPEG.exe -c 128 images/David.bmp Contrast.bmp & exit"
 	@cmd /k "cd bin & FFJPEG.exe -g images/David.bmp Grayscale.bmp & exit"
-	@cmd /k "cd bin & FFJPEG.exe -i images/David.bmp Bright.bmp & exit"
+	@cmd /k "cd bin & FFJPEG.exe -i 128 images/David.bmp Bright.bmp & exit"
 	@cmd /k "cd bin & FFJPEG.exe -r images/David.bmp Reflect.bmp & exit"
 	@cmd /k "cd bin & FFJPEG.exe -s images/David.bmp Sepia.bmp & exit"
 

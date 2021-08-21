@@ -1,7 +1,6 @@
-#include "parser/BMP.h"
+#include "util/stdc.h"
 #include "util/util.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "parser/BMP.h"
 
 // Open BMP
 BMP *openBMP(char *file)

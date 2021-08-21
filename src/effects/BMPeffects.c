@@ -1,5 +1,5 @@
+#include "util/stdc.h"
 #include "effects/BMPeffects.h"
-#include <math.h>
 
 // Blur
 void blur(BMP *image)

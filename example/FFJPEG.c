@@ -1,35 +1,33 @@
-#include <stdio.h>
-#include <getopt.h>
+#include "util/stdc.h"
 #include "util/util.h"
 #include "parser/BMP.h"
 #include "effects/BMPeffects.h"
 
 int main(int argc, char **argv)
 {
-	// allowable filters { b -> Blur, c -> Contrast, g -> Grayscal, i -> Brightness, r -> Reflect, s -> Sepia }
-	char *filters = "bcgirs";
-
-	// Get filter flag and check validity
-	char filter = getopt(argc, argv, filters);
+	// allowable filters { b -> Blur, c -> Contrast [level], g -> Grayscal, i -> Brightness [level], r -> Reflect, s -> Sepia }
+	char *filters = "bc:gi:rs";
 	
-	if (filter == '?')
+	// Get option flag and check validity
+	char option = getopt(argc, argv, filters);
+	
+	if (option == '?')
 	{
-		fprintf(stderr, "Invalid filter.\n");
-		return 1;
+		return EXIT_FAILURE;
 	};
 
-	// Ensure only one filter
+	// Ensure only one option
 	if (getopt(argc, argv, filters) != -1)
 	{
-		fprintf(stderr, "Only one filter allowed.\n");
-		return 1;
+		fprintf(stderr, "Only one option allowed.\n");
+		return EXIT_FAILURE;
 	};
 
 	// Ensure proper usage
 	if (argc != optind + 2)
 	{
-		fprintf(stderr, "Usage: cli.exe [flag] infile outfile\n");
-		return 1;
+		fprintf(stderr, "Usage: %s [flag] ... infile outfile\n", argv[0]);
+		return EXIT_FAILURE;
 	};
 
 	// Remember filenames
@@ -41,32 +39,32 @@ int main(int argc, char **argv)
 	if (inputptr == NULL)
 	{
 		fprintf(stderr, "Could not open %s.\n", infile);
-		return 1;
+		return EXIT_FAILURE;
 	};
 
 	// Open output file
-	FILE *outputptr = fopen(outfile, "wb");
+	FILE *outputptr = fopen(outfile, "w");
 	if (outputptr == NULL)
 	{
 		fclose(inputptr);
 		fprintf(stderr, "Could not create %s.\n", outfile);
-		return 1;
+		return EXIT_FAILURE;
 	};
 
 	// Opening the BMP file and reading the file
 	BMP *image = openBMP(infile);
 
-	// Filter image
-	switch (filter)
+	// filter image
+	switch (option)
 	{
 		// Blur
 		case 'b':
 			blur(image);
 			break;
 
-		// Contrast
+		// Contrast [level]
 		case 'c':
-			contrast(image, 128);
+			contrast(image, atoi(optarg));
 			break;
 
 		// Grayscale
@@ -84,21 +82,21 @@ int main(int argc, char **argv)
 			sepia(image);
 			break;
 
-		// Brightness
+		// Brightness [level]
 		case 'i':
-			brightnes(image, 128);
+			brightnes(image, atoi(optarg));
 			break;
 	};
 
 	// Writing the BMP file
 	writeBMP(outfile, image);
 
-	// closing the BMP file
+	// Closing the BMP file
 	closeBMP(image);
 
-	// closing the file pointers
+	// Closing the file pointers
 	fclose(inputptr);
 	fclose(outputptr);
 
-	return 0;
+	return EXIT_SUCCESS;
 };
