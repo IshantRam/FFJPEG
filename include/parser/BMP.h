@@ -1,4 +1,27 @@
-// BMP related data types
+/* 
+ * Copyright (c) 2021 Ishant Ram
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ * 
+ */
+
+// BMP related data types and function prototypes
 #pragma once
 #ifndef BMP_H
 #define BMP_H
@@ -48,22 +71,6 @@ typedef struct BITMAPINFOHEADER
 BITMAPINFOHEADER;
 
 /**
- * RGBTRIPLE
- *
- * This structure describes a color consisting of relative intensities of
- * red, green, and blue.
- *
- * Adapted from http://msdn.microsoft.com/en-us/library/aa922590.aspx.
- */
-typedef struct RGBTRIPLE
-{
-	u8 rgbtBlue;
-	u8 rgbtGreen;
-	u8 rgbtRed;
-} __attribute__((__packed__))
-RGBTRIPLE;
-
-/**
  * BMP
  * 
  * This structure contains information about the image
@@ -73,7 +80,7 @@ typedef struct BMP
 {
 	BITMAPFILEHEADER bf;
 	BITMAPINFOHEADER bi;
-	RGBTRIPLE** PixleMap;
+	RGB **pixlemap;
 } __attribute__((__packed__))
 BMP;
 
@@ -81,7 +88,7 @@ BMP;
  * open BMP
  * 
  * The openBMP Function returns the BMP file data loaded in the BMP structure
- * which contains BITMAPFILEHEADER BITMAPINFOHEADER and RGBTRIPLE pixlemap
+ * which contains BITMAPFILEHEADER BITMAPINFOHEADER and RGB pixlemap
  * 
  */
 BMP *openBMP(char *file);
@@ -92,14 +99,14 @@ BMP *openBMP(char *file);
  * The closeBMP Function frees the allocated memory for image loaded in the BMP structure
  * 
  */
-void closeBMP(BMP* image);
+void closeBMP(BMP *image);
 
 /*
  * write BMP
  *
- * The writeBMP Function creates a new BMP image file with the arguments
- * a BMP structure which contains the information about the image (BITMAPFILEHEADER BITMAPINFOHEADER and RGBTRIPLE pixlemap)
+ * The writeBMP Function creates a new BMP image with the arguments
+ * a BMP structure which contains the information about the image (BITMAPFILEHEADER BITMAPINFOHEADER and RGB pixlemap) and the file name
  */
-void writeBMP(char *file, BMP* image);
+void writeBMP(char *file, BMP *image);
 
 #endif

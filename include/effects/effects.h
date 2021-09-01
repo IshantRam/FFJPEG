@@ -22,13 +22,23 @@
  */
 
 #pragma once
-#ifndef STDC_H
-#define STDC_H
+#include "parser/BMP.h"
+#include "util/util.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include <getopt.h>
+// Box Blur the image
+void blur(BMP *image);
 
-#endif
+// Change the brightnes of image
+void brightnes(BMP *image, u8 brightneslevel);
+
+// Chage the contrast of image
+void contrast(BMP *image, u8 contrastlevel);
+
+// Convert image to grayscale
+void grayscale(BMP *image);
+
+// Reflect image horizontally
+void reflect(BMP *image);
+
+// Convert image to sepia
+void sepia(BMP *image);

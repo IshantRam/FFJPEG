@@ -1,6 +1,6 @@
-# FFjpeg
+# FFJPEG
 
-FFjpeg is a command line toolbox to manipulate, convert and much more to images.
+A command line toolbox to convert, edit, manipulate, and much more to images.
 
 # Run Locally
 
