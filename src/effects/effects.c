@@ -21,6 +21,14 @@
  * 
  */
 
+/*
+ * @file effects.c
+ * @author Ishant Ram
+ * @date 7th September 2021
+ * @brief This file contains the effect function prototypes implementation from effects.h
+ * 
+ */
+
 #include "util/stdc.h"
 #include "effects/effects.h"
 

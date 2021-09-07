@@ -21,7 +21,13 @@
  * 
  */
 
-// JPEG related data types and function prototypes
+/*
+ * @file JPEG.h
+ * @author Ishant Ram
+ * @date 7th September 2021
+ * @brief This file contains JPEG related data types and function prototypes
+ */
+
 #pragma once
 #ifndef JPEG_H
 #define JPEG_H
@@ -147,6 +153,9 @@ JPEG;
  * The openJPEG Function returns the JPEG file data loaded in the JPEG structure
  * which contains SOI, JPEGDEFAULTHEADER, QUANTIZATIONTABLE, STARTOFFRAME, HUFFMANTABLE, STARTOFSCAN, ECG, EOI.
  * 
+ * @param File name
+ * @return JPEG struct
+ * 
  */
 JPEG *openJPEG(char *file);
 
@@ -154,6 +163,9 @@ JPEG *openJPEG(char *file);
  * close JPEG
  *
  * The closeJPEG Function frees the allocated memory for image loaded in the JPEG structure.
+ * 
+ * @param JPEG struct with loaded data
+ * @return Void
  * 
  */
 void closeJPEG(JPEG *image);
@@ -163,6 +175,9 @@ void closeJPEG(JPEG *image);
  *
  * The writeJPEG Function creates a new JPEG image file with the arguments
  * a JPEG structure which contains the information about the image (SOI, JPEGDEFAULTHEADER, QUANTIZATIONTABLE, STARTOFFRAME, HUFFMANTABLE, STARTOFSCAN, ECG, EOI) and the file name.
+ * 
+ * @param File name & JPEG struct with loaded data
+ * @return void
  * 
  */
 void writeJPEG(char *file, JPEG *image);

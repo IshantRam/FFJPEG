@@ -21,11 +21,20 @@
  * 
  */
 
+/*
+ * @file util.h
+ * @author Ishant Ram
+ * @date 7th September 2021
+ * @brief This files contains util data types and function prototypes.
+ * 
+ */
+
 #pragma once
 #ifndef UTIL_H
 #define UTIL_H
 
 /*
+ *
  * Image type macros
  *
  */
@@ -71,6 +80,9 @@ RGB;
  *
  * if the give value is greather than 255 it wrpas it up to 255, if less than 0 wraps it up to 0 .
  * 
+ * @param N
+ * @return Wrapped value
+ * 
  */
 u8 wrap(s64 value);
 
@@ -78,6 +90,9 @@ u8 wrap(s64 value);
  * get Type
  *
  * The get type function gets the image type.
+ * 
+ * @param File name
+ * @return Type of image mapped with number according to Image type macros
  * 
  */
 u8 getType(char *file);

@@ -21,20 +21,31 @@
  * 
  */
 
+/*
+ * @file util.c
+ * @author Ishant Ram
+ * @date 7th September 2021
+ * @brief This file contains the util function prototypes implementation from util.h
+ * 
+ */
+
 #include "util/util.h"
 #include "util/stdc.h"
 
 // Wrap
 u8 wrap(s64 value)
 {
+    // If value is greather than 255 wrap it to 255
     if (value > 255)
     {
         return 255;
     }
+    // else if value is less than 0 wrap it to 0
     else if (value < 0)
     {
         return 0;
     };
+    // else return the value
     return value;
 };
 
@@ -45,7 +56,6 @@ u8 getType(char *file)
     FILE *filePTR = fopen(file, "rb");
     if (filePTR == NULL)
     {
-        fclose(filePTR);
         fprintf(stderr, "Could not open %s\n", file);
         return 0;
     };

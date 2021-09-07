@@ -21,6 +21,14 @@
  * 
  */
 
+/*
+ * @file BMP.c
+ * @author Ishant Ram
+ * @date 7th September 2021
+ * @brief This file contains the BMP function prototypes implementation from BMP.h
+ * 
+ */
+
 #include "util/stdc.h"
 #include "util/util.h"
 #include "parser/BMP.h"

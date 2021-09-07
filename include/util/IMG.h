@@ -21,6 +21,14 @@
  * 
  */
 
+/*
+ * @file IMG.h
+ * @author Ishant Ram
+ * @date 7th September 2021
+ * @brief This files contains the data types and function prototypes for Generic image struct.
+ * 
+ */
+
 #pragma once
 #ifndef IMG_H
 #define IMG_H
@@ -48,6 +56,9 @@ IMG;
  *
  * The BMP to IMG function converts the BMP image loaded in the BMP struct to IMG struct image.
  * 
+ * @param BMP struct loaded with data
+ * @return IMG struct
+ * 
  */
 IMG *BMPtoIMG(BMP *image);
 
@@ -56,14 +67,21 @@ IMG *BMPtoIMG(BMP *image);
  *
  * The IMG to BMP function converts the image loaded in the IMG struct to BMP struct image.
  * 
+ * @param IMG struct loaded with data
+ * @param BMP struct loaded with data
+ * @return BMP struct
+ * 
  */
-BMP* IMGtoBMP(IMG* image, BMP *BMPimage);
+BMP *IMGtoBMP(IMG *image, BMP *BMPimage);
 
 /*
  * Close IMG
  * 
  * The closeIMG Function frees the allocated memory for image loaded in the IMG structure
+ * 
+ * @param IMG struct loaded with data
+ * 
  */
-void closeIMG(IMG* image);
+void closeIMG(IMG *image);
 
 #endif

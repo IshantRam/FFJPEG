@@ -21,6 +21,15 @@
  * 
  */
 
+/*
+ * @file stdc.h
+ * @author Ishant Ram
+ * @date 7th September 2021
+ * @brief This files contains the imports for the standard C libarys.
+ * 
+ */
+
+
 #pragma once
 #ifndef STDC_H
 #define STDC_H

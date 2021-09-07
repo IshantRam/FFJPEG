@@ -21,6 +21,14 @@
  * 
  */
 
+/*
+ * @file JPEG.c
+ * @author Ishant Ram
+ * @date 7th September 2021
+ * @brief This file contains the JPEG function prototypes implementation from JPEG.h
+ * 
+ */
+
 #include "util/stdc.h"
 #include "parser/JPEG.h"
 

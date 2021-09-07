@@ -21,6 +21,14 @@
  * 
  */
 
+/*
+ * @file FFJPEG.h
+ * @author Ishant Ram
+ * @date 7th September 2021
+ * @brief Multimedia converter for FFJPEG.
+ * 
+ */
+
 #include "util/stdc.h"
 #include "util/util.h"
 #include "util/IMG.h"
@@ -35,6 +43,7 @@ int main(int argc, char **argv)
 	// Get option flag and check validity
 	char option = getopt(argc, argv, filters);
 
+	// Unknow Option
 	if (option == '?')
 	{
 		fprintf(stderr, "Usage: %s [flag] ... infile outfile\n", argv[0]);
@@ -86,12 +95,14 @@ int main(int argc, char **argv)
 		return EXIT_FAILURE;
 	};
 
+	// Open the image
 	BMP *BMPimage = openBMP(infile);
 	if (BMPimage == NULL)
 	{
 		return EXIT_FAILURE;
 	};
 
+	// Moving the image to generic image struct
 	IMG *image = BMPtoIMG(BMPimage);
 	if (image == NULL)
 	{
