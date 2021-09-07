@@ -23,6 +23,7 @@
 
 #include "util/stdc.h"
 #include "util/util.h"
+#include "util/IMG.h"
 #include "parser/BMP.h"
 #include "effects/effects.h"
 
@@ -75,7 +76,23 @@ int main(int argc, char **argv)
 		return EXIT_FAILURE;
 	};
 
-	BMP *image = openBMP(infile);
+	// Confirm the image is supported by FFJPEG
+	u8 type = getType(infile);
+	if (type != 1)
+	{
+		fclose(inputptr);
+		fclose(outputptr);
+		fprintf(stderr, "Unsupported file format %s\n", infile);
+		return EXIT_FAILURE;
+	};
+
+	BMP *BMPimage = openBMP(infile);
+	if (BMPimage == NULL)
+	{
+		return EXIT_FAILURE;
+	};
+
+	IMG *image = BMPtoIMG(BMPimage);
 	if (image == NULL)
 	{
 		return EXIT_FAILURE;
@@ -115,11 +132,17 @@ int main(int argc, char **argv)
 			break;
 	};
 
+	// Moving IMG to BMP 
+	BMPimage = IMGtoBMP(image, BMPimage);
+
 	// Writing the BMP file
-	writeBMP(outfile, image);
+	writeBMP(outfile, BMPimage);
 
 	// Closing the BMP file
-	closeBMP(image);
+	closeBMP(BMPimage);
+
+	// Closing the IMG file
+	closeIMG(image);
 
 	// Closing the file pointers
 	fclose(inputptr);

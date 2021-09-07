@@ -21,56 +21,49 @@
  * 
  */
 
+#pragma once
+#ifndef IMG_H
+#define IMG_H
+
 #include "util/util.h"
-#include "util/stdc.h"
+#include "parser/BMP.h"
 
-// Wrap
-u8 wrap(s64 value)
+/*
+ * IMG
+ *
+ * This structure describes the basic image data which contains 
+ * height, width and RGB image data, this struct is used as genreic image struct in FFJPEG.
+ * 
+ */
+typedef struct IMG
 {
-    if (value > 255)
-    {
-        return 255;
-    }
-    else if (value < 0)
-    {
-        return 0;
-    };
-    return value;
-};
+	s64 width;
+	s64 height;
+	RGB **pixlemap;
+} __attribute__((__packed__))
+IMG;
 
-// Get type
-u8 getType(char *file)
-{
-    // Opening the file
-    FILE *filePTR = fopen(file, "rb");
-    if (filePTR == NULL)
-    {
-        fclose(filePTR);
-        fprintf(stderr, "Could not open %s\n", file);
-        return 0;
-    };
+/*
+ * BMP to IMG
+ *
+ * The BMP to IMG function converts the BMP image loaded in the BMP struct to IMG struct image.
+ * 
+ */
+IMG *BMPtoIMG(BMP *image);
 
-    // Reading the first 2 bytes
-    u16 word;
-    fread(&word, sizeof(u16), 1, filePTR);
+/*
+ * IMG to BMP
+ *
+ * The IMG to BMP function converts the image loaded in the IMG struct to BMP struct image.
+ * 
+ */
+BMP* IMGtoBMP(IMG* image, BMP *BMPimage);
 
-    // All possible cases
-    switch (word)
-    {
-        // BITMAP
-        case 0x4D42:
-            fclose(filePTR);
-            return BITMAP;
+/*
+ * Close IMG
+ * 
+ * The closeIMG Function frees the allocated memory for image loaded in the IMG structure
+ */
+void closeIMG(IMG* image);
 
-        // JFIF
-        case 0xD8FF:
-            fclose(filePTR);
-            return JFIF;
-
-        default:
-            fclose(filePTR);
-            return 0;
-    };
-
-    return EXIT_SUCCESS;
-};
+#endif

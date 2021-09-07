@@ -22,23 +22,24 @@
  */
 
 #pragma once
+#include "util/IMG.h"
 #include "parser/BMP.h"
 #include "util/util.h"
 
 // Box Blur the image
-void blur(BMP *image);
+void blur(IMG *image);
 
 // Change the brightnes of image
-void brightnes(BMP *image, u8 brightneslevel);
+void brightnes(IMG *image, u8 brightneslevel);
 
 // Chage the contrast of image
-void contrast(BMP *image, u8 contrastlevel);
+void contrast(IMG *image, u8 contrastlevel);
 
 // Convert image to grayscale
-void grayscale(BMP *image);
+void grayscale(IMG *image);
 
 // Reflect image horizontally
-void reflect(BMP *image);
+void reflect(IMG *image);
 
 // Convert image to sepia
-void sepia(BMP *image);
+void sepia(IMG *image);
