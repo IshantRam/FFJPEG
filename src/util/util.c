@@ -46,7 +46,7 @@ u8 wrap(s64 value)
         return 0;
     };
     // else return the value
-    return value;
+    return (u8)value;
 };
 
 // Get type
@@ -64,21 +64,21 @@ u8 getType(char *file)
     u16 word;
     fread(&word, sizeof(u16), 1, filePTR);
 
-    // All possible cases
+    // Closing the file pointer
+    fclose(filePTR);
+
+    // All supported image formats by FFJPEG
     switch (word)
     {
         // BITMAP
         case 0x4D42:
-            fclose(filePTR);
             return BITMAP;
 
         // JFIF
         case 0xD8FF:
-            fclose(filePTR);
             return JFIF;
 
         default:
-            fclose(filePTR);
             return 0;
     };
 

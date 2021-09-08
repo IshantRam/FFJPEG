@@ -85,6 +85,10 @@ int main(int argc, char **argv)
 		return EXIT_FAILURE;
 	};
 
+	// Closing the file pointers
+	fclose(inputptr);
+	fclose(outputptr);
+	
 	// Confirm the image is supported by FFJPEG
 	u8 type = getType(infile);
 	if (type != 1)
@@ -154,10 +158,6 @@ int main(int argc, char **argv)
 
 	// Closing the IMG file
 	closeIMG(image);
-
-	// Closing the file pointers
-	fclose(inputptr);
-	fclose(outputptr);
 
 	return EXIT_SUCCESS;
 };
