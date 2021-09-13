@@ -24,4 +24,4 @@ A command line toolbox to convert, edit, manipulate, and much more to images.
 
 # License
 
-MIT
+GPL
