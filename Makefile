@@ -12,13 +12,13 @@ all:
 
 # Run the FFJPEG
 run:
-	@cmd /k "cd bin & FFJPEG.exe -b images/BMP/David.bmp Blur.bmp & exit"
-	@cmd /k "cd bin & FFJPEG.exe -c 128 images/BMP/David.bmp Contrast.bmp & exit"
-	@cmd /k "cd bin & FFJPEG.exe -g images/BMP/David.bmp Grayscale.bmp & exit"
-	@cmd /k "cd bin & FFJPEG.exe -i 128 images/BMP/David.bmp Bright.bmp & exit"
-	@cmd /k "cd bin & FFJPEG.exe -r images/BMP/David.bmp Reflect.bmp & exit"
-	@cmd /k "cd bin & FFJPEG.exe -s images/BMP/David.bmp Sepia.bmp & exit"
+	bin/FFJPEG -b bin/images/David.bmp bin/Blur.bmp
+	bin/FFJPEG -c 128 bin/images/David.bmp bin/Contrast.bmp
+	bin/FFJPEG -g bin/images/David.bmp bin/Grayscale.bmp
+	bin/FFJPEG -i 128 bin/images/David.bmp bin/Bright.bmp
+	bin/FFJPEG -r bin/images/David.bmp bin/Reflect.bmp
+	bin/FFJPEG -s bin/images/David.bmp bin/Sepia.bmp
 
 # Delete compiled binaries and other files
 clean:
-	@cmd /k "cd bin & del * & exit"
+	rm bin/*
