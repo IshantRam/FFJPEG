@@ -1,4 +1,4 @@
-/*
+/**
  * @file IMG.h
  * @author Ishant Ram
  * @date 7th September 2021
@@ -6,7 +6,6 @@
  * 
  */
 
-#pragma once
 #ifndef IMG_H
 #define IMG_H
 
@@ -28,7 +27,7 @@ typedef struct IMG
 } __attribute__((__packed__))
 IMG;
 
-/*
+/**
  * BMP to IMG
  *
  * The BMP to IMG function converts the BMP image loaded in the BMP struct to IMG struct image.
@@ -39,7 +38,7 @@ IMG;
  */
 IMG *BMPtoIMG(BMP *image);
 
-/*
+/**
  * IMG to BMP
  *
  * The IMG to BMP function converts the image loaded in the IMG struct to BMP struct image.
@@ -51,7 +50,7 @@ IMG *BMPtoIMG(BMP *image);
  */
 BMP *IMGtoBMP(IMG *image, BMP *BMPimage);
 
-/*
+/**
  * Close IMG
  * 
  * The closeIMG Function frees the allocated memory for image loaded in the IMG structure

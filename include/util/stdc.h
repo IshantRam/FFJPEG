@@ -1,4 +1,4 @@
-/*
+/**
  * @file stdc.h
  * @author Ishant Ram
  * @date 7th September 2021
@@ -6,8 +6,6 @@
  * 
  */
 
-
-#pragma once
 #ifndef STDC_H
 #define STDC_H
 

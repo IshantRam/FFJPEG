@@ -1,4 +1,4 @@
-/*
+/**
  * @file BMP.h
  * @author Ishant Ram
  * @date 7th September 2021
@@ -6,7 +6,6 @@
  * 
  */
 
-#pragma once
 #ifndef BMP_H
 #define BMP_H
 
@@ -71,7 +70,7 @@ typedef struct BMP
 } __attribute__((__packed__))
 BMP;
 
-/*
+/**
  * open BMP
  * 
  * The openBMP Function returns the BMP file data loaded in the BMP structure
@@ -83,7 +82,7 @@ BMP;
  */
 BMP *openBMP(char *file);
 
-/*
+/**
  * close BMP
  * 
  * The closeBMP Function frees the allocated memory for image loaded in the BMP structure
@@ -94,7 +93,7 @@ BMP *openBMP(char *file);
  */
 void closeBMP(BMP *image);
 
-/*
+/**
  * write BMP
  *
  * The writeBMP Function creates a new BMP image with the arguments

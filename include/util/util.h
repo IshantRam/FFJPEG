@@ -1,12 +1,10 @@
-/*
+/**
  * @file util.h
  * @author Ishant Ram
  * @date 7th September 2021
  * @brief This files contains util data types and function prototypes.
  * 
  */
-
-#pragma once
 #ifndef UTIL_H
 #define UTIL_H
 
@@ -52,7 +50,7 @@ typedef struct RGB
 } __attribute__((__packed__))
 RGB;
 
-/* 
+/** 
  * Wrap
  *
  * if the give value is greather than 255 it wrpas it up to 255, if less than 0 wraps it up to 0 .
@@ -63,7 +61,7 @@ RGB;
  */
 u8 wrap(s64 value);
 
-/*
+/**
  * get Type
  *
  * The get type function gets the image type.

@@ -1,4 +1,4 @@
-/*
+/**
  * @file effects.c
  * @author Ishant Ram
  * @date 7th September 2021

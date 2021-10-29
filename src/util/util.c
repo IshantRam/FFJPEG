@@ -1,4 +1,4 @@
-/*
+/**
  * @file util.c
  * @author Ishant Ram
  * @date 7th September 2021

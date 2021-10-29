@@ -1,4 +1,4 @@
-/*
+/**
  * @file effects.h
  * @author Ishant Ram
  * @date 7th September 2021
@@ -6,12 +6,10 @@
  * 
  */
 
-#pragma once
 #include "util/IMG.h"
-#include "parser/BMP.h"
 #include "util/util.h"
 
-/*
+/**
  * Blur
  *
  * The Blur function Box blurs the image.
@@ -24,7 +22,7 @@
  */
 void blur(IMG *image);
 
-/*
+/**
  * Brightness
  * 
  * The brigthness fuction changes the brightness of image according to given level.
@@ -38,7 +36,7 @@ void blur(IMG *image);
  */
 void brightnes(IMG *image, u8 brightneslevel);
 
-/*
+/**
  * Contrast
  * 
  * The Contrast fuction changes the Contrast of image according to given level.
@@ -52,7 +50,7 @@ void brightnes(IMG *image, u8 brightneslevel);
  */
 void contrast(IMG *image, u8 contrastlevel);
 
-/*
+/**
  * Grayscale
  *
  * The Grayscale function Grayscales the image.
@@ -65,7 +63,7 @@ void contrast(IMG *image, u8 contrastlevel);
  */
 void grayscale(IMG *image);
 
-/*
+/**
  * Reflect
  *
  * The Reflect function Reflects the image horizontally.
@@ -76,10 +74,10 @@ void grayscale(IMG *image);
  */
 void reflect(IMG *image);
 
-/* 
- * Reflect
+/**
+ * Speia
  *
- * The Reflect function Reflects the image horizontally.
+ * The Sepia function addes the Sepia filter to the image
  * 
  * @param Generic image struct with loaded data
  * @return Void
