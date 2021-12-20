@@ -86,3 +86,33 @@ void reflect(IMG *image);
  * 
  */
 void sepia(IMG *image);
+
+/**
+ * Red
+ *
+ * The red function sets the red compund of the image to 255
+ *
+ * @param Generic image struct with loaded data
+ * @return void
+ */
+void red(IMG *image);
+
+/**
+ * Green
+ *
+ * The green function sets the green compund of the image to 255
+ *
+ * @param Generic image struct with loaded data
+ * @return void
+ */
+void green(IMG *image);
+
+/**
+ * Blue
+ *
+ * The blue function sets the blue compund of the image to 255
+ *
+ * @param Generic image struct with loaded data
+ * @return void
+ */
+void blue(IMG *image);

@@ -14,8 +14,8 @@
 
 int main(int argc, char **argv)
 {
-	// Allowable filters { b -> Blur, c -> Contrast [level], g -> Grayscal, i -> Brightness [level], r -> Reflect, s -> Sepia }
-	char *filters = "bc:gi:rs";
+	// Allowable filters { b -> Blur, c -> Contrast [level], g -> Grayscal, i -> Brightness [level], r -> Reflect, s -> Sepia, x -> Red, y -> Green, z -> blue }
+	char *filters = "bc:gi:rsxyz";
 
 	// Get option flag and check validity
 	char option = getopt(argc, argv, filters);
@@ -120,6 +120,21 @@ int main(int argc, char **argv)
 		case 'i':
 			brightnes(image, atoi(optarg));
 			break;
+
+        // Red
+        case 'x':
+            red(image);
+            break;
+
+        // Green
+        case 'y':
+            green(image);
+            break;
+
+        // Blue
+        case 'z':
+            blue(image);
+            break;
 	};
 
 	// Moving IMG to BMP 

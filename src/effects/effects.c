@@ -136,3 +136,44 @@ void sepia(IMG *image)
     };
     return;
 };
+
+// Red
+void red(IMG *image)
+{
+    for (s64 i = 0; i < image->height; i++)
+    {
+        for (s64 j = 0; j < image->width; j++)
+        {
+            image->pixlemap[i][j].red += 255 - image->pixlemap[i][j].red; 
+        };
+    };
+
+    return;
+};
+
+// Green
+void green(IMG *image)
+{
+    for (s64 i = 0; i < image->height; i++)
+    {
+        for (s64 j = 0; j < image->width; j++)
+        {
+            image->pixlemap[i][j].green += 255 - image->pixlemap[i][j].green;
+        };
+    };
+
+    return;
+};
+
+// Blue
+void blue(IMG *image)
+{
+    for (s64 i = 0; i < image->height; i++)
+    {
+        for (s64 j = 0; j < image->width; j++)
+        {
+            image->pixlemap[i][j].blue += 255 - image->pixlemap[i][j].blue; 
+        };
+    };
+    return;
+};
