@@ -1,7 +1,7 @@
 /**
  * @file util.h
  * @author Ishant Ram
- * @date 7th September 2021
+ * @date 27th December 2021
  * @brief This files contains util data types and function prototypes.
  * 
  */
@@ -35,6 +35,9 @@ typedef signed short s16;
 typedef signed int s32;
 typedef signed long long s64;
 
+typedef float f32;
+typedef double f64;
+
 /*
  * RGB
  *
@@ -44,11 +47,36 @@ typedef signed long long s64;
  */
 typedef struct RGB
 {
-	u8 red;
-	u8 green;
-	u8 blue;
+	u8 R;
+	u8 G;
+	u8 B;
 } __attribute__((__packed__))
 RGB;
+
+/*
+ * YCbCr
+ *
+ * This structure describes a color consisting of relative intensities of
+ * luma, chroma blue, chroma red.
+ * 
+ */
+typedef struct YCbCr
+{
+	u8 Y;
+	u8 Cb;
+	u8 Cr;
+} __attribute__((__packed__))
+YCbCr;
+
+/**
+ * RGB to YCbCr
+ * 
+ * This function converts a YCbCr pixel to an RGB pixel.
+ * 
+ * @param pixel 
+ * @return YCbCr 
+ */
+YCbCr RGBtoYCbCr(RGB pixel);
 
 /** 
  * Wrap

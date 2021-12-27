@@ -1,7 +1,7 @@
 /**
  * @file effects.h
  * @author Ishant Ram
- * @date 7th September 2021
+ * @date 27th December 2021
  * @brief This file contains the effect for image
  * 
  */
@@ -116,3 +116,13 @@ void green(IMG *image);
  * @return void
  */
 void blue(IMG *image);
+
+/**
+ * debug
+ *
+ * A debug function for debugging
+ *
+ * @param Generic image struct with loaded data
+ * @return void
+ */
+void debug(IMG *image);

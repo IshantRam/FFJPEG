@@ -1,7 +1,7 @@
 /**
  * @file effects.c
  * @author Ishant Ram
- * @date 7th September 2021
+ * @date 27th December 2021
  * @brief This file contains the effect function prototypes implementation from effects.h
  * 
  */
@@ -28,16 +28,16 @@ void blur(IMG *image)
                 {
                     if (i + r >= 0 && i + r <= image->height - 1 && j + c >= 0 && j + c <= image->width - 1)
                     {
-                        finalRed = finalRed + image->pixlemap[i + r][j + c].red;
-                        finalGreen = finalGreen + image->pixlemap[i + r][j + c].green;
-                        finalBlue = finalBlue + image->pixlemap[i + r][j + c].blue;
+                        finalRed = finalRed + image->pixlemap[i + r][j + c].R;
+                        finalGreen = finalGreen + image->pixlemap[i + r][j + c].G;
+                        finalBlue = finalBlue + image->pixlemap[i + r][j + c].B;
                         counter++;
                     }
                 }
             }
-            clone[i][j].red = round(finalRed / counter);
-            clone[i][j].green = round(finalGreen / counter);
-            clone[i][j].blue = round(finalBlue / counter);
+            clone[i][j].R = round(finalRed / counter);
+            clone[i][j].G = round(finalGreen / counter);
+            clone[i][j].B = round(finalBlue / counter);
         }
     }
 
@@ -58,10 +58,10 @@ void contrast(IMG *image, u8 contrastlevel)
     {
         for (s64 j = 0; j < image->width; j++)
         {
-            float factor = (259 * (contrastlevel + 255)) / (255 * (259 - contrastlevel));
-            image->pixlemap[i][j].red = wrap((s64)((factor * image->pixlemap[i][j].red - contrastlevel) + contrastlevel));
-            image->pixlemap[i][j].green = wrap((s64)((factor * image->pixlemap[i][j].green - contrastlevel) + contrastlevel));
-            image->pixlemap[i][j].blue = wrap((s64)((factor * image->pixlemap[i][j].blue - contrastlevel) + contrastlevel));
+            f32 factor = (259 * (contrastlevel + 255)) / (255 * (259 - contrastlevel));
+            image->pixlemap[i][j].R = wrap((s64)((factor * image->pixlemap[i][j].R - contrastlevel) + contrastlevel));
+            image->pixlemap[i][j].G = wrap((s64)((factor * image->pixlemap[i][j].G - contrastlevel) + contrastlevel));
+            image->pixlemap[i][j].B = wrap((s64)((factor * image->pixlemap[i][j].B - contrastlevel) + contrastlevel));
         };
     };
     return;
@@ -74,9 +74,9 @@ void brightnes(IMG *image, u8 brightneslevel)
     {
         for (s64 j = 0; j < image->width; j++)
         {
-            image->pixlemap[i][j].red = wrap((s64)image->pixlemap[i][j].red + brightneslevel);
-            image->pixlemap[i][j].green = wrap((s64)image->pixlemap[i][j].green + brightneslevel);
-            image->pixlemap[i][j].blue = wrap((s64)image->pixlemap[i][j].blue + brightneslevel);
+            image->pixlemap[i][j].R = wrap((s64)image->pixlemap[i][j].R + brightneslevel);
+            image->pixlemap[i][j].G = wrap((s64)image->pixlemap[i][j].G + brightneslevel);
+            image->pixlemap[i][j].B = wrap((s64)image->pixlemap[i][j].B + brightneslevel);
         };
     };
     return;
@@ -89,11 +89,11 @@ void grayscale(IMG *image)
     {
         for (s64 j = 0; j < image->width; j++)
         {
-            u8 avg = round((image->pixlemap[i][j].red + image->pixlemap[i][j].green + image->pixlemap[i][j].blue) / 3.00);
+            u8 avg = round((image->pixlemap[i][j].R + image->pixlemap[i][j].G + image->pixlemap[i][j].B) / 3.00);
 
-            image->pixlemap[i][j].red = avg;
-            image->pixlemap[i][j].green = avg;
-            image->pixlemap[i][j].blue = avg;
+            image->pixlemap[i][j].R = avg;
+            image->pixlemap[i][j].G = avg;
+            image->pixlemap[i][j].B = avg;
         };
     };
     return;
@@ -121,17 +121,38 @@ void sepia(IMG *image)
     {
         for (s64 j = 0; j < image->width; j++)
         {
-            u16 sepiaRed = round(.393 * image->pixlemap[i][j].red + .769 * image->pixlemap[i][j].green + .189 * image->pixlemap[i][j].blue);
-            u16 sepiaGreen = round(.349 * image->pixlemap[i][j].red + .686 * image->pixlemap[i][j].green + .168 * image->pixlemap[i][j].blue);
-            u16 sepiaBlue = round(.272 * image->pixlemap[i][j].red + .534 * image->pixlemap[i][j].green + .131 * image->pixlemap[i][j].blue);
+            int sepiaRed = round(.393 * image->pixlemap[i][j].R + .769 * image->pixlemap[i][j].G + .189 * image->pixlemap[i][j].B);
+            int sepiaGreen = round(.349 * image->pixlemap[i][j].R + .686 * image->pixlemap[i][j].G + .168 * image->pixlemap[i][j].B);
+            int sepiaBlue = round(.272 * image->pixlemap[i][j].R + .534 * image->pixlemap[i][j].G + .131 * image->pixlemap[i][j].B);
 
-            sepiaRed = wrap((s64)sepiaRed);
-            sepiaGreen = wrap((s64)sepiaRed);
-            sepiaGreen = wrap((s64)sepiaRed);
+            if (sepiaRed > 255)
+            {
+                sepiaRed = 255;
+            }
+            else
+            {
+                sepiaRed = (long int)sepiaRed;
+            }
+            if (sepiaGreen > 255)
+            {
+                sepiaGreen = 255;
+            }
+            else
+            {
+                sepiaGreen = (long int)sepiaGreen;
+            }
+            if (sepiaBlue > 255)
+            {
+                sepiaBlue = 255;
+            }
+            else
+            {
+                sepiaBlue = (long int)sepiaBlue;
+            }
 
-            image->pixlemap[i][j].red = sepiaRed;
-            image->pixlemap[i][j].green = sepiaGreen;
-            image->pixlemap[i][j].blue = sepiaBlue;
+            image->pixlemap[i][j].R = sepiaRed;
+            image->pixlemap[i][j].G = sepiaGreen;
+            image->pixlemap[i][j].B = sepiaBlue;
         };
     };
     return;
@@ -144,7 +165,7 @@ void red(IMG *image)
     {
         for (s64 j = 0; j < image->width; j++)
         {
-            image->pixlemap[i][j].red += 255 - image->pixlemap[i][j].red; 
+            image->pixlemap[i][j].R = 255; 
         };
     };
 
@@ -158,7 +179,7 @@ void green(IMG *image)
     {
         for (s64 j = 0; j < image->width; j++)
         {
-            image->pixlemap[i][j].green += 255 - image->pixlemap[i][j].green;
+            image->pixlemap[i][j].G = 255;
         };
     };
 
@@ -172,8 +193,14 @@ void blue(IMG *image)
     {
         for (s64 j = 0; j < image->width; j++)
         {
-            image->pixlemap[i][j].blue += 255 - image->pixlemap[i][j].blue; 
+            image->pixlemap[i][j].B = 255; 
         };
     };
+    return;
+};
+
+// Debug
+void debug(IMG *image)
+{
     return;
 };

@@ -1,7 +1,7 @@
 /**
  * @file util.c
  * @author Ishant Ram
- * @date 7th September 2021
+ * @date 27th December 2021
  * @brief This file contains the util function prototypes implementation from util.h
  * 
  */
@@ -60,4 +60,14 @@ u8 getType(char *file)
     };
 
     return EXIT_SUCCESS;
+};
+
+YCbCr RGBtoYCbCr(RGB pixel)
+{
+    YCbCr ycbcr;
+    ycbcr.Y = round(16 + ((65.738 * pixel.R) / 256) + ((129.057 * pixel.G) / 256) + ((25.064 * pixel.B) / 256));
+    ycbcr.Cb = round(128 - ((37.945 * pixel.R) / 256) - ((74.494 * pixel.G) / 256) + ((112.439 * pixel.B) / 256)); 
+    ycbcr.Cr = round(128 + ((112.439 * pixel.R) / 256) - ((94.154 * pixel.G) / 256) - ((18.285 * pixel.B) / 256)); 
+
+    return ycbcr;
 };

@@ -1,7 +1,7 @@
 /**
  * @file FFJPEG.h
  * @author Ishant Ram
- * @date 7th September 2021
+ * @date 27th December 2021
  * @brief Multimedia converter for FFJPEG.
  * 
  */
@@ -15,7 +15,7 @@
 int main(int argc, char **argv)
 {
 	// Allowable filters { b -> Blur, c -> Contrast [level], g -> Grayscal, i -> Brightness [level], r -> Reflect, s -> Sepia, x -> Red, y -> Green, z -> blue }
-	char *filters = "bc:gi:rsxyz";
+	char *filters = "bc:dgi:rsxyz";
 
 	// Get option flag and check validity
 	char option = getopt(argc, argv, filters);
@@ -120,6 +120,10 @@ int main(int argc, char **argv)
 		case 'i':
 			brightnes(image, atoi(optarg));
 			break;
+    
+        case 'd':
+            debug(image);
+            break;
 
         // Red
         case 'x':
